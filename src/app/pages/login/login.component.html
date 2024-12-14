@@ -1,0 +1,24 @@
+<div class="card mat-elevation-z5">
+  <h1>Login</h1>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <mat-form-field>
+      <mat-label> Email address </mat-label>
+      <input matInput formControlName="email" />
+      @if(email?.hasError('required')){
+      <mat-error>Email address is required</mat-error>
+      } @if(email?.hasError('email')){
+      <mat-error>Please enter a valid email address!</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label> Password </mat-label>
+      <input type="password" matInput formControlName="password" />
+      @if(email?.hasError('required')){
+      <mat-error>Password is required!</mat-error>
+      }
+    </mat-form-field>
+    <div class="center margin-top">
+      <button color="primary" type="submit" mat-raised-button>Login</button>
+    </div>
+  </form>
+</div>
