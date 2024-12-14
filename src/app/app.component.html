@@ -1,4 +1,8 @@
-<mat-toolbar color="primary"> Angular Sign Up App </mat-toolbar>
+<mat-toolbar color="primary">
+  Angular Sign Up App @if(currentUser()){
+  <span>{{ currentUser()?.email }}</span>
+  }
+</mat-toolbar>
 
 <div class="container">
   <router-outlet />
