@@ -1,4 +1,5 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -11,5 +12,14 @@ export class NotificationService {
   }
   hideLoading() {
     this.loading.set(false);
+  }
+
+  snackbar = inject(MatSnackBar);
+  success(message: string) {
+    this.snackbar.open(message, undefined, {
+      duration: 2000,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+    });
   }
 }

@@ -39,6 +39,7 @@ export class LoginComponent {
     }
     this.notificationService.showLoading();
     await this.authService.login(email, password);
+    this.notificationService.success('Logged in successfully!');
     this.router.navigate(['home']);
     this.notificationService.hideLoading();
   }
