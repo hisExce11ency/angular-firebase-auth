@@ -37,11 +37,16 @@ export class LoginComponent {
     if (!this.loginForm.valid || !email || !password) {
       return;
     }
-    this.notificationService.showLoading();
-    await this.authService.login(email, password);
-    this.notificationService.success('Logged in successfully!');
-    this.router.navigate(['home']);
-    this.notificationService.hideLoading();
+    try {
+      this.notificationService.showLoading();
+      await this.authService.login(email, password);
+      this.notificationService.success('Logged in successfully!');
+      this.router.navigate(['home']);
+    } catch (err: any) {
+      this.notificationService.firebaseError(err);
+    } finally {
+      this.notificationService.hideLoading();
+    }
   }
 
   email = this.loginForm.get('email');
