@@ -3,6 +3,7 @@ import {
   Auth,
   authState,
   signInWithEmailAndPassword,
+  signOut,
   UserCredential,
 } from '@angular/fire/auth';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -18,5 +19,9 @@ export class AuthService {
 
   login(email: string, password: string): Promise<UserCredential> {
     return signInWithEmailAndPassword(this.firebaseAuth, email, password);
+  }
+
+  logout(): Promise<void> {
+    return signOut(this.firebaseAuth);
   }
 }
