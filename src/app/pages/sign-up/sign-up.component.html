@@ -4,19 +4,38 @@
     <mat-form-field>
       <mat-label> Name </mat-label>
       <input matInput formControlName="name" />
+      @if(name?.hasError('required')){
+      <mat-error>Name is required!</mat-error>
+      }
     </mat-form-field>
     <mat-form-field>
       <mat-label> Email address </mat-label>
       <input matInput formControlName="email" />
+      @if(email?.hasError('required')){
+      <mat-error>Email address is required</mat-error>
+      } @if(email?.hasError('email')){
+      <mat-error>Please enter a valid email address!</mat-error>
+      }
     </mat-form-field>
     <mat-form-field>
       <mat-label> Password</mat-label>
       <input type="password" matInput formControlName="password" />
+      @if(password?.hasError('required')){
+      <mat-error>Password is required!</mat-error>
+      }
     </mat-form-field>
     <mat-form-field>
       <mat-label> Confirm Password </mat-label>
       <input type="password" matInput formControlName="confirmPassword" />
+      @if(confirmPassword?.hasError('required')){
+      <mat-error>Confirm Password is required!</mat-error>
+      }
     </mat-form-field>
+
+    @if(signUpForm.hasError('passwordsDontMatch')){
+    <mat-error>Passwords should match! </mat-error>
+    }
+
     <div class="center margin-top">
       <button color="primary" type="submit" mat-raised-button>Sign Up!</button>
     </div>

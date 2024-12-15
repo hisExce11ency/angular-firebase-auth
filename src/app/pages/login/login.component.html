@@ -13,7 +13,7 @@
     <mat-form-field>
       <mat-label> Password </mat-label>
       <input type="password" matInput formControlName="password" />
-      @if(email?.hasError('required')){
+      @if(password?.hasError('required')){
       <mat-error>Password is required!</mat-error>
       }
     </mat-form-field>
