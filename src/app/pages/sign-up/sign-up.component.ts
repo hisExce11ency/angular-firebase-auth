@@ -11,6 +11,9 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { AuthService } from '../../services/auth.service';
+import { NotificationService } from '../../services/notification.service';
+import { Router } from '@angular/router';
 
 export function passwordsMatchValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -41,6 +44,9 @@ export function passwordsMatchValidator(): ValidatorFn {
 })
 export class SignUpComponent {
   fb = inject(FormBuilder);
+  authService = inject(AuthService);
+  notificationService = inject(NotificationService);
+  router = inject(Router);
 
   signUpForm = this.fb.group(
     {
@@ -52,8 +58,23 @@ export class SignUpComponent {
     { validators: passwordsMatchValidator() }
   );
 
-  submit() {
-    console.log(this.signUpForm.value);
+  async submit() {
+    const { name, email, password } = this.signUpForm.value;
+
+    if (!this.signUpForm.valid || !name || !password || !email) {
+      return;
+    }
+    try {
+      this.notificationService.showLoading();
+      const { user } = await this.authService.signUp(email, password);
+      await this.authService.setDisplayName(user, name);
+      this.notificationService.success('User was signed up successfully!');
+      this.router.navigate(['/home']);
+    } catch (err: any) {
+      this.notificationService.firebaseError(err);
+    } finally {
+      this.notificationService.hideLoading();
+    }
   }
 
   name = this.signUpForm.get('name');

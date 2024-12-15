@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   Angular Sign Up App @if(currentUser()){
   <button mat-button [mat-menu-trigger-for]="userMenue">
-    {{ currentUser()?.email }}
+    {{ currentUser()?.displayName }}
     <mat-icon>expand_more</mat-icon>
   </button>
   }

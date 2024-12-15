@@ -16,6 +16,9 @@ export const getFirebaseErrorMessage = ({ code }: FirebaseError): string => {
     case 'auth/invalid-email':
       message = 'The email address format is invalid!';
       break;
+    case 'auth/email-already-in-use':
+      message = 'The provided email is already in use by an existing user!';
+      break;
     case 'auth/network-request-failed':
       message = 'A network error occurred. Please try again!';
       break;
