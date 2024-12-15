@@ -1,0 +1,24 @@
+<div class="card mat-elevation-z5">
+  <h1>Sign Up</h1>
+  <form [formGroup]="signUpForm" (ngSubmit)="submit()">
+    <mat-form-field>
+      <mat-label> Name </mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label> Email address </mat-label>
+      <input matInput formControlName="email" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label> Password</mat-label>
+      <input type="password" matInput formControlName="password" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label> Confirm Password </mat-label>
+      <input type="password" matInput formControlName="confirmPassword" />
+    </mat-form-field>
+    <div class="center margin-top">
+      <button color="primary" type="submit" mat-raised-button>Sign Up!</button>
+    </div>
+  </form>
+</div>
