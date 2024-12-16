@@ -6,6 +6,10 @@
   </button>
   }
   <mat-menu #userMenue="matMenu">
+    <button mat-menu-item routerLink="/profile">
+      <mat-icon>person</mat-icon>
+      <Label>Profile</Label>
+    </button>
     <button mat-menu-item (click)="logout()">
       <mat-icon>logout</mat-icon>
       Logout

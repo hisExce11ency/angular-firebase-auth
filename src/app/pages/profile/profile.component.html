@@ -1,0 +1,35 @@
+<div class="card mat-elevation-z5">
+  <h1>Update Profile</h1>
+  <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+    <div class="row">
+      <mat-form-field>
+        <mat-label> First Name </mat-label>
+        <input matInput formControlName="firstName" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label> Last Name </mat-label>
+        <input matInput formControlName="lastName" />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field>
+        <mat-label> Display Name </mat-label>
+        <input matInput formControlName="displayName" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label> Phone Number</mat-label>
+        <input type="number" matInput formControlName="phone" />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <mat-label> Address </mat-label>
+      <input matInput formControlName="address" />
+    </mat-form-field>
+
+    <div class="center margin-top">
+      <button color="primary" type="submit" mat-raised-button>Save</button>
+    </div>
+  </form>
+</div>

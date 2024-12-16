@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AuthService } from '../../services/auth.service';
 import { NotificationService } from '../../services/notification.service';
 import { Router } from '@angular/router';
+import { UsersService } from '../../services/users.service';
 
 export function passwordsMatchValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -45,6 +46,7 @@ export function passwordsMatchValidator(): ValidatorFn {
 export class SignUpComponent {
   fb = inject(FormBuilder);
   authService = inject(AuthService);
+  userService = inject(UsersService);
   notificationService = inject(NotificationService);
   router = inject(Router);
 
@@ -66,8 +68,10 @@ export class SignUpComponent {
     }
     try {
       this.notificationService.showLoading();
-      const { user } = await this.authService.signUp(email, password);
-      await this.authService.setDisplayName(user, name);
+      const {
+        user: { uid },
+      } = await this.authService.signUp(email, password);
+      await this.userService.addUser({ uid, email, displayName: name });
       this.notificationService.success('User was signed up successfully!');
       this.router.navigate(['/home']);
     } catch (err: any) {
